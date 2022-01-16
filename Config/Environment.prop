@@ -1,0 +1,10 @@
+UAT=https://www.facebook.com
+TEST=https://www.google.com
+Run_URL=TEST
+BrowserType=chrome
+DriverPath=C:\\Driver
+RepositoryPath=C:\\ObjectRepository\\ObjectRepository.xls
+TestData=C:\\ObjectRepository\\TestData.xls
+Chrome_HeadlessBrowser=No
+Firefox_HeadlessBrowser=No
+GenerateScreenshot=Yes

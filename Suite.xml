@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<!-- hello -->
+
+
+
+<suite name="Parallel Tests"   parallel="methods" thread-count="4" verbose="1">
+<listeners>
+<listener class-name="com.core.GenerateReport"/>
+</listeners>
+
+<test name="Simple Test1">
+<parameter name="browser" value="chrome"/>
+<groups>
+    <run>
+      <include name="SmokeTest"/>
+    </run>
+  </groups>
+<classes>
+<class name="TestNGFramework.TestNGMavenGitJenkins.Test1"/>
+
+</classes>
+</test>
+
+
+
+
+
+
+
+
+
+</suite>

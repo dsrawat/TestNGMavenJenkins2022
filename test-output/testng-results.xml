@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="1" total="3" passed="2">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Parallel Tests" duration-ms="48286" started-at="2022-01-16T10:12:02Z" finished-at="2022-01-16T10:12:51Z">
+    <groups>
+      <group name="SmokeTest">
+        <method signature="Test1.test11()[pri:0, instance:TestNGFramework.TestNGMavenGitJenkins.Test1@15b3e5b]" name="test11" class="TestNGFramework.TestNGMavenGitJenkins.Test1"/>
+        <method signature="Test1.test12()[pri:0, instance:TestNGFramework.TestNGMavenGitJenkins.Test1@15b3e5b]" name="test12" class="TestNGFramework.TestNGMavenGitJenkins.Test1"/>
+      </group> <!-- SmokeTest -->
+    </groups>
+    <test name="Simple Test1" duration-ms="48286" started-at="2022-01-16T10:12:02Z" finished-at="2022-01-16T10:12:51Z">
+      <class name="TestNGFramework.TestNGMavenGitJenkins.Test1">
+        <test-method status="PASS" signature="beforSuite()[pri:0, instance:TestNGFramework.TestNGMavenGitJenkins.Test1@15b3e5b]" name="beforSuite" is-config="true" duration-ms="25" started-at="2022-01-16T15:42:02Z" finished-at="2022-01-16T15:42:02Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforSuite -->
+        <test-method status="PASS" signature="beforeclass()[pri:0, instance:TestNGFramework.TestNGMavenGitJenkins.Test1@15b3e5b]" name="beforeclass" is-config="true" duration-ms="1" started-at="2022-01-16T15:42:02Z" finished-at="2022-01-16T15:42:02Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeclass -->
+        <test-method status="PASS" signature="beforeTest(java.lang.String)[pri:0, instance:TestNGFramework.TestNGMavenGitJenkins.Test1@15b3e5b]" name="beforeTest" is-config="true" duration-ms="8653" started-at="2022-01-16T15:42:03Z" finished-at="2022-01-16T15:42:11Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method status="PASS" signature="beforeTest(java.lang.String)[pri:0, instance:TestNGFramework.TestNGMavenGitJenkins.Test1@15b3e5b]" name="beforeTest" is-config="true" duration-ms="24443" started-at="2022-01-16T15:42:03Z" finished-at="2022-01-16T15:42:27Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method status="PASS" signature="setTestData(java.lang.reflect.Method)[pri:0, instance:TestNGFramework.TestNGMavenGitJenkins.Test1@15b3e5b]" name="setTestData" is-config="true" duration-ms="455" started-at="2022-01-16T15:42:11Z" finished-at="2022-01-16T15:42:12Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void TestNGFramework.TestNGMavenGitJenkins.Test1.test11() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setTestData -->
+        <test-method status="PASS" signature="test11()[pri:0, instance:TestNGFramework.TestNGMavenGitJenkins.Test1@15b3e5b]" name="test11" duration-ms="36024" started-at="2022-01-16T15:42:12Z" finished-at="2022-01-16T15:42:48Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- test11 -->
+        <test-method status="PASS" signature="setTestData(java.lang.reflect.Method)[pri:0, instance:TestNGFramework.TestNGMavenGitJenkins.Test1@15b3e5b]" name="setTestData" is-config="true" duration-ms="12" started-at="2022-01-16T15:42:27Z" finished-at="2022-01-16T15:42:27Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void TestNGFramework.TestNGMavenGitJenkins.Test1.test12() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setTestData -->
+        <test-method status="PASS" signature="test12()[pri:0, instance:TestNGFramework.TestNGMavenGitJenkins.Test1@15b3e5b]" name="test12" duration-ms="22083" started-at="2022-01-16T15:42:27Z" finished-at="2022-01-16T15:42:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- test12 -->
+        <test-method status="PASS" signature="afterTest()[pri:0, instance:TestNGFramework.TestNGMavenGitJenkins.Test1@15b3e5b]" name="afterTest" is-config="true" duration-ms="2680" started-at="2022-01-16T15:42:48Z" finished-at="2022-01-16T15:42:50Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTest -->
+        <test-method status="PASS" signature="afterTest()[pri:0, instance:TestNGFramework.TestNGMavenGitJenkins.Test1@15b3e5b]" name="afterTest" is-config="true" duration-ms="1691" started-at="2022-01-16T15:42:49Z" finished-at="2022-01-16T15:42:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTest -->
+        <test-method status="PASS" signature="setReportData(java.lang.reflect.Method)[pri:0, instance:TestNGFramework.TestNGMavenGitJenkins.Test1@15b3e5b]" name="setReportData" is-config="true" duration-ms="14" started-at="2022-01-16T15:42:50Z" finished-at="2022-01-16T15:42:50Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void TestNGFramework.TestNGMavenGitJenkins.Test1.test11() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setReportData -->
+        <test-method status="PASS" signature="setReportData(java.lang.reflect.Method)[pri:0, instance:TestNGFramework.TestNGMavenGitJenkins.Test1@15b3e5b]" name="setReportData" is-config="true" duration-ms="14" started-at="2022-01-16T15:42:51Z" finished-at="2022-01-16T15:42:51Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void TestNGFramework.TestNGMavenGitJenkins.Test1.test12() throws java.lang.Exception]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setReportData -->
+        <test-method status="PASS" signature="afterSuite()[pri:0, instance:TestNGFramework.TestNGMavenGitJenkins.Test1@15b3e5b]" name="afterSuite" is-config="true" duration-ms="0" started-at="2022-01-16T15:42:51Z" finished-at="2022-01-16T15:42:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterSuite -->
+      </class> <!-- TestNGFramework.TestNGMavenGitJenkins.Test1 -->
+    </test> <!-- Simple Test1 -->
+  </suite> <!-- Parallel Tests -->
+</testng-results>

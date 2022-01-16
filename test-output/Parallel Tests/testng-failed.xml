@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="4" guice-stage="DEVELOPMENT" name="Failed suite [Parallel Tests]" parallel="methods">
+  <listeners>
+    <listener class-name="com.core.GenerateReport"/>
+  </listeners>
+  <test name="Simple Test1(failed)" parallel="methods">
+    <parameter name="browser" value="chrome"/>
+    <groups>
+      <run>
+        <include name="SmokeTest"/>
+      </run>
+    </groups>
+    <classes>
+      <class name="TestNGFramework.TestNGMavenGitJenkins.Test1">
+        <methods>
+          <include name="beforSuite"/>
+          <include name="beforeclass"/>
+          <include name="afterSuite"/>
+          <include name="setTestData"/>
+          <include name="afterTest"/>
+          <include name="beforeTest"/>
+          <include name="setReportData"/>
+          <include name="test1"/>
+        </methods>
+      </class> <!-- TestNGFramework.TestNGMavenGitJenkins.Test1 -->
+    </classes>
+  </test> <!-- Simple Test1(failed) -->
+</suite> <!-- Failed suite [Parallel Tests] -->

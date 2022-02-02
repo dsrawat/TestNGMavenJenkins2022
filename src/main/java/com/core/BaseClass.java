@@ -175,8 +175,7 @@ public class BaseClass {
         }
 		
 		Framework.Data=Framework.readTestData(result.getName());
-		//Framework.Report.addScenario(result.getName());
-		//Framework.Report.getExtentTestInstance(Framework.currentMethodName);
+		
 		System.out.println("Before Method - End");
 		
 		

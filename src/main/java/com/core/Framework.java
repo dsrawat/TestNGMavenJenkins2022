@@ -2,6 +2,7 @@ package com.core;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -16,10 +17,13 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.json.simple.JSONObject;
 import org.openqa.selenium.WebDriver;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class Framework {
 
@@ -162,6 +166,11 @@ public class Framework {
 		return MatchingType+"_"+PropertyValue;
 	}
 	
+	
+	
+	
+	
+	//Read Test Data from Excel
 	public static HashMap<String,String> readTestData(String Heading) throws IOException
 	{
 		

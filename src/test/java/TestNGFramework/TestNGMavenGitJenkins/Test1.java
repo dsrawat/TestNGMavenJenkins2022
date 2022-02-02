@@ -14,6 +14,7 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
+import org.json.simple.JSONObject;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -56,7 +57,9 @@ public class Test1 extends BaseClass{
 		System.out.println("test1 Thread ID= " + CurrentThread);
 		//System.out.println("browser="+browser);
 		//HashMap<String,String> Data=readTestData(this.getClass().getSimpleName());
-		
+		JSONObject jsob = UIOperator.readTestDataJson("TestData.json");
+		System.out.println("inside Test JsonObject="+jsob.get("Job").toString());
+		System.out.println("inside Test JsonObject="+jsob.get("Name").toString());
 		UIOperator.OpenURL();
 		Framework.extentTestMap.get(UIOperator.getCurrentThreadID()).log(Status.PASS, "Open URL not Successfully");
 		System.out.println("test1 Thread ID= " + CurrentThread);

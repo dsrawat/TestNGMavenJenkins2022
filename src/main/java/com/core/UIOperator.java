@@ -3,9 +3,11 @@ package com.core;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Method;
+import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 
@@ -15,6 +17,9 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -27,7 +32,9 @@ import ru.yandex.qatools.ashot.AShot;
 import ru.yandex.qatools.ashot.Screenshot;
 import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 
-
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class UIOperator {
 	
@@ -231,5 +238,20 @@ public class UIOperator {
 	public static synchronized Thread getCurrentThread()
 	{
 		return Thread.currentThread();
+	}
+	
+	public static JSONObject readTestDataJson(String JSONFileName) throws IOException, ParseException
+	{
+		HashMap<String,String> hs=null;
+		JSONParser jsonParse= new JSONParser();
+		//System.out.println("Test Data File="+System.getProperty("user.dir")+"\\TestData\\TestData.json");
+		FileReader fr= new FileReader(System.getProperty("user.dir")+"\\TestData\\"+JSONFileName);
+		Object ob= jsonParse.parse(fr);
+		System.out.println("before json");
+		JSONObject jsob= (JSONObject)ob;
+		System.out.println("after json");
+		System.out.println("JsonObject="+jsob.get("Job").toString());
+		System.out.println("JsonObject="+jsob.get("Name").toString());
+		return jsob;
 	}
 }

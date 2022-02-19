@@ -49,65 +49,42 @@ public class Test1 extends BaseClass{
 	
 	@Test(groups= {"SmokeTest"})
 	public void test11() throws Exception
-	
 	{
-		//Long CurrentThread=Thread.currentThread().getId();
+		
 		Long CurrentThread = UIOperator.getCurrentThreadID();
 		Log.debug("************************test1 execution Start*********************************************");
-		System.out.println("test1 Thread ID= " + CurrentThread);
+		//System.out.println("test1 Thread ID= " + CurrentThread);
 		//System.out.println("browser="+browser);
 		//HashMap<String,String> Data=readTestData(this.getClass().getSimpleName());
 		JSONObject jsob = UIOperator.readTestDataJson("TestData.json");
 		System.out.println("inside Test JsonObject="+jsob.get("Job").toString());
 		System.out.println("inside Test JsonObject="+jsob.get("Name").toString());
 		UIOperator.OpenURL();
-		Framework.extentTestMap.get(UIOperator.getCurrentThreadID()).log(Status.PASS, "Open URL not Successfully");
-		System.out.println("test1 Thread ID= " + CurrentThread);
-		//Framework.extentTestMap.get(CurrentThread).log(Status.PASS, "Open URL Successfully");
-		//System.out.println("className="+UIOperator.getCurrentThread().getStackTrace()[1].getClassName());
-		//System.out.println("Method Name="+UIOperator.getCurrentThread().getStackTrace()[1].getMethodName());
-		//new UIOperator().takeSnapShot(Thread.currentThread().getStackTrace()[1].getClassName(),Thread.currentThread().getStackTrace()[1].getMethodName());
+		UIOperator.enterText("GoogleSearch_TextBox", jsob.get("SearchData").toString());
+		
 		UIOperator.takeSnapShot();
-		Thread.sleep(5000);
-		System.out.println("test1 Thread ID= " + Thread.currentThread().getId());
-		//Framework.Report.addReportStep("Step 1","Description 1","Pass","");
-		Assert.assertEquals(true, true);
-		//Log.debug("************************test1 execution Complete*************************************************");
-		//Framework.Report.addReportStep("Step 2","Description 2","Fail","");
-		//Framework.Report.addReportStep("Step 3","Description 3","Pass","");
-		System.out.println("test1 Thread ID= " + Thread.currentThread().getId());
+		
 		System.out.println("ending of test1()");
 		 
 	}
 	
 		
-	@Test(groups= {"SmokeTest"})
+	@Test(groups= {"Smoke1Test"})
 	public void test12() throws Exception
 	
 	{
 		//Long CurrentThread=Thread.currentThread().getId();
 		Long CurrentThread = UIOperator.getCurrentThreadID();
 		Log.debug("************************test1 execution Start*********************************************");
-		System.out.println("test1 Thread ID= " + CurrentThread);
+		//System.out.println("test1 Thread ID= " + CurrentThread);
 		//System.out.println("browser="+browser);
 		//HashMap<String,String> Data=readTestData(this.getClass().getSimpleName());
 		
 		UIOperator.OpenURL();
-		Framework.extentTestMap.get(UIOperator.getCurrentThreadID()).log(Status.PASS, "test12 open URL not successfull");
-		System.out.println("test1 Thread ID= " + CurrentThread);
-		//Framework.extentTestMap.get(CurrentThread).log(Status.PASS, "Open URL Successfully");
-		//System.out.println("className="+UIOperator.getCurrentThread().getStackTrace()[1].getClassName());
-		//System.out.println("Method Name="+UIOperator.getCurrentThread().getStackTrace()[1].getMethodName());
-		//new UIOperator().takeSnapShot(Thread.currentThread().getStackTrace()[1].getClassName(),Thread.currentThread().getStackTrace()[1].getMethodName());
+		
 		UIOperator.takeSnapShot();
-		Thread.sleep(5000);
-		System.out.println("test1 Thread ID= " + Thread.currentThread().getId());
-		//Framework.Report.addReportStep("Step 1","Description 1","Pass","");
-		Assert.assertEquals(true, true);
-		//Log.debug("************************test1 execution Complete*************************************************");
-		//Framework.Report.addReportStep("Step 2","Description 2","Fail","");
-		//Framework.Report.addReportStep("Step 3","Description 3","Pass","");
-		System.out.println("test1 Thread ID= " + Thread.currentThread().getId());
+		
+		Framework.logPass("Test12 Pass");
 		System.out.println("ending of test1()");
 		 
 	}

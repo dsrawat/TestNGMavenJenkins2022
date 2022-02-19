@@ -20,6 +20,9 @@ public class WebDriverWrapper {
 	
 	//static WebDriver driver;
 	static ThreadLocal<RemoteWebDriver> driver = new ThreadLocal<>();
+	static ThreadLocal<String> classNameTesting = new ThreadLocal<>();
+	static ThreadLocal<String> methodNameTesting = new ThreadLocal<>();
+	
 	
 	static DesiredCapabilities capabilities=null;
 	

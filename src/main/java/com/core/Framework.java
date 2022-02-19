@@ -22,6 +22,8 @@ import org.openqa.selenium.WebDriver;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
@@ -228,6 +230,17 @@ public class Framework {
 		
 		
 		
+	}
+	
+	public static void logPass(String msg)
+	{
+		Framework.extentTestMap.get(UIOperator.getCurrentThreadID()).log(Status.PASS, msg);
+	}
+	
+	public static void logFail(String msg) throws Exception
+	{
+		Framework.extentTestMap.get(UIOperator.getCurrentThreadID()).log(Status.FAIL, msg);
+		Framework.extentTestMap.get(UIOperator.getCurrentThreadID()).addScreenCaptureFromPath(UIOperator.takeSnapShot());
 	}
 	
 }

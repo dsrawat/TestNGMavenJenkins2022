@@ -25,6 +25,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 import com.aventstack.extentreports.Status;
 
@@ -41,14 +42,21 @@ public class UIOperator {
 	
 	static String URL;
 	
-	public static void OpenURL()
+	public static void OpenURL() throws Exception
 	{
 		 URL=Framework.env.get(Framework.env.get("Run_URL"));
-		/*Framework.driver.get(URL);
-		Framework.driver.manage().window().maximize();*/
-		 WebDriverWrapper.getDriver().get(URL);
-		 WebDriverWrapper.getDriver().manage().window().maximize();
-		 Framework.extentTestMap.get(UIOperator.getCurrentThreadID()).log(Status.PASS, "Open URL Successfully");
+		 try {
+			 
+			 WebDriverWrapper.getDriver().get(URL);
+			 WebDriverWrapper.getDriver().manage().window().maximize();
+			 //Framework.extentTestMap.get(UIOperator.getCurrentThreadID()).log(Status.PASS, "Open URL Successfully");
+			 Framework.logPass("Open URL Successfully");
+		 }
+		 catch(Exception e)
+		 {
+			 Framework.logFail("Failed to Open URL");
+		 }
+		 
 		
 	}
 	
@@ -68,18 +76,27 @@ public class UIOperator {
 		
 	}
 	
-	public static void enterText(String ObjectName,String Value) throws IOException
+	public static void enterText(String ObjectName,String Value) throws Exception
 	{
 		try {
+			
+			
+			
 		String values[]=new Framework().readObjectRepository(ObjectName).split("_");
 		WebElement ele=add(values);
+		System.out.println("Values length = "+values.length);
+		System.out.println("Values 0 = "+values[0]);
+		System.out.println("Values 1 = "+values[1]);
 		ele.sendKeys(Value);
 		}
 		catch(Exception e)
 		{
 			
-			//Framework.Report.addReportStep("Step","Description","Fail","");
-			//Framework.Report.addReportStepError("Unable to Enter Text of "+ObjectName);
+			//Framework.logFail("Unable to enter Value in textbox");
+			//UIOperator.takeSnapShot();
+			Framework.logFail("Unable to enter value in Textbox in application");
+			Assert.fail("Unable to enter value in Textbox in application");
+			
 		}
 	}
 	
@@ -173,23 +190,36 @@ public class UIOperator {
     }*/
 	
 	//latest version
-	public synchronized static void takeSnapShot() throws Exception{
+	public synchronized static String takeSnapShot() throws Exception {
 		System.out.println("HashCode="+WebDriverWrapper.getDriver().hashCode());
 		//System.out.println("inside screenshot method and current Class is ="+ClassName);
 		//System.out.println("inside screenshot method and current method is ="+MethodName);
 		
-		String CName=Thread.currentThread().getStackTrace()[2].getClassName();
-		String MName=Thread.currentThread().getStackTrace()[2].getMethodName();
+		String CName=Thread.currentThread().getStackTrace()[3].getClassName();
+		String MName=Thread.currentThread().getStackTrace()[3].getMethodName();
 		System.out.println("inside screenshot method and current Class is ="+CName);
 		System.out.println("inside screenshot method and current method is ="+MName);
+		
+		for (StackTraceElement ste : Thread.currentThread().getStackTrace()) {
+		        if(ste.toString().contains("test"))
+		    {
+		    	System.out.println("Found testclass="+ste.getClassName());
+		    	CName= ste.getClassName();
+		    	System.out.println("Found testmethod="+ste.getMethodName());
+		    	MName= ste.getMethodName();
+		    	break;
+		    }
+		}
 		int a=CName.lastIndexOf(".");
 		String NewClass=CName.substring(a+1);
+		
 		System.out.println("inside screenshot method and current Class is ="+NewClass);
 		//System.out.println("class name ="+new ITestContext().getAllTestMethods()[0].getInstance().getClass())
 		String Screenshotname=MName+"-"+java.time.LocalDate.now()+"_"+java.time.LocalTime.now().toString().replace(".","").replace(":","");
 		WebDriver driver=WebDriverWrapper.getDriver();
 		 Screenshot fpScreenshot = new AShot().shootingStrategy(ShootingStrategies.viewportPasting(1000)).takeScreenshot(driver);
 		String FileName=Framework.ReportPath+"\\"+NewClass+"\\"+MName+"\\"+Screenshotname+".JPEG";
+		System.out.println("File name inside snapshot="+FileName);
 		BufferedImage b=fpScreenshot.getImage();
 	    ImageIO.write(b,"JPEG",new File(FileName));
 	    
@@ -219,10 +249,11 @@ public class UIOperator {
 	      in.close();
 
 	      System.out.println("Screen="+Framework.ReportPath+"\\"+NewClass+"\\"+MName+"\\"+MName+"Screens.pdf");
+	      String  path = Framework.ReportPath+"\\"+NewClass+"\\"+MName+"\\"+MName+"Screens.pdf";
 	      Framework.document.get(Thread.currentThread().getId()).save(Framework.ReportPath+"\\"+NewClass+"\\"+MName+"\\"+MName+"Screens.pdf");
 	      //Framework.document.get(Thread.currentThread().getId()).save("");
 	      //Framework.document.close();
-	      
+	      return FileName;
 	      
 	      
     }

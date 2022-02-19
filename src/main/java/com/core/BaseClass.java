@@ -143,6 +143,12 @@ public class BaseClass {
 		System.out.println("Name of the class"+this.getClass().getSimpleName());
 		//String folderpath=;
 		Framework.currentClassName=this.getClass().getSimpleName();
+		
+		//WebDriverWrapper.classNameTesting.set(this.getClass().getSimpleName());
+		//System.out.println("class name stored in thread local="+WebDriverWrapper.classNameTesting.get());
+		
+		
+		
 		System.out.println(System.getProperty("user.dir")+this.getClass().getSimpleName());
 		File file = new File(Framework.ReportPath+"\\"+this.getClass().getSimpleName());
         if (!file.exists()) {

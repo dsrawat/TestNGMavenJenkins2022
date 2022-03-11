@@ -44,8 +44,16 @@ public class WebDriverWrapper {
 					options.setBinary(new File("C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"));
 					options.setCapability(CapabilityType.BROWSER_NAME, "chrome");
 					options.setCapability(CapabilityType.PLATFORM_NAME, "WINDOWS");
-					//driver.set(new RemoteWebDriver(new URL("http://192.168.43.205:4444/wd/hub"), options));
-					driver.set(new ChromeDriver(options));
+					if(Framework.env.get("RemoteDriver").equalsIgnoreCase("Yes"))
+							{
+						
+						driver.set(new RemoteWebDriver(new URL("http://192.168.43.205:4444/wd/hub"), options));
+							}
+					else
+					{
+						
+						driver.set(new ChromeDriver(options));
+					}
 			}
 		else if(BrowserType.equalsIgnoreCase("firefox"))
 		{
@@ -64,10 +72,18 @@ public class WebDriverWrapper {
 				options.addArguments("--headless");
 		
 			//driver=new ChromeDriver(options);
+			if(Framework.env.get("RemoteDriver").equalsIgnoreCase("Yes"))
+			{
+		
 			//driver= new RemoteWebDriver(new URL("http://192.168.1.9:5556/wd/hub"),capabilities);
 			//driver.set(new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), options));
-			System.out.println("after driver set");
-			driver.set(new FirefoxDriver(options));
+			}
+			else
+			{
+				
+				System.out.println("after driver set");
+				driver.set(new FirefoxDriver(options));
+			}
 	}
 		
 		//return driver;

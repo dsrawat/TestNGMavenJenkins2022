@@ -94,7 +94,7 @@ public class UIOperator {
 			
 			//Framework.logFail("Unable to enter Value in textbox");
 			//UIOperator.takeSnapShot();
-			Framework.logFail("Unable to enter value in Textbox in application");
+			Framework.logFail("Unable to enter value");
 			Assert.fail("Unable to enter value in Textbox in application");
 			
 		}
@@ -221,7 +221,11 @@ public class UIOperator {
 		String FileName=Framework.ReportPath+"\\"+NewClass+"\\"+MName+"\\"+Screenshotname+".JPEG";
 		System.out.println("File name inside snapshot="+FileName);
 		BufferedImage b=fpScreenshot.getImage();
-	    ImageIO.write(b,"JPEG",new File(FileName));
+	    if(Framework.env.get("GenerateScreenshot").equalsIgnoreCase("Yes"))
+	    {
+	    	
+	    	ImageIO.write(b,"JPEG",new File(FileName));
+	    }
 	    
 	  
 	          
@@ -247,10 +251,14 @@ public class UIOperator {
 	      bimg.flush();
 	      contentStream.close();
 	      in.close();
-
-	      System.out.println("Screen="+Framework.ReportPath+"\\"+NewClass+"\\"+MName+"\\"+MName+"Screens.pdf");
-	      String  path = Framework.ReportPath+"\\"+NewClass+"\\"+MName+"\\"+MName+"Screens.pdf";
-	      Framework.document.get(Thread.currentThread().getId()).save(Framework.ReportPath+"\\"+NewClass+"\\"+MName+"\\"+MName+"Screens.pdf");
+	      
+	      if(Framework.env.get("GenerateScreenshotPDF").equalsIgnoreCase("Yes"))
+	      {
+	    	  
+	    	  System.out.println("Screen="+Framework.ReportPath+"\\"+NewClass+"\\"+MName+"\\"+MName+"Screens.pdf");
+	    	  String  path = Framework.ReportPath+"\\"+NewClass+"\\"+MName+"\\"+MName+"Screens.pdf";
+	    	  Framework.document.get(Thread.currentThread().getId()).save(Framework.ReportPath+"\\"+NewClass+"\\"+MName+"\\"+MName+"Screens.pdf");
+	      }
 	      //Framework.document.get(Thread.currentThread().getId()).save("");
 	      //Framework.document.close();
 	      return FileName;

@@ -4,12 +4,16 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
+import org.testng.IAnnotationTransformer;
+import org.testng.IRetryAnalyzer;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
@@ -17,16 +21,17 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.ITestAnnotation;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
 
-public class BaseClass {
+public class BaseClass implements IRetryAnalyzer  {
 	
 	static String var=null;
 	static String var1=null;
 	String optbrowser="firefox";
-	
+	int counter=0;
 	@BeforeSuite(alwaysRun=true)
 	public void beforSuite() throws IOException 
 	{
@@ -197,6 +202,25 @@ public class BaseClass {
 		Framework.document.get(Thread.currentThread().getId()).close();
 		System.out.println("After Method - End");
 	}
+
+	@Override
+	public boolean retry(ITestResult result) {
+		//int counter = 0;
+		//int retryLimit = Integer.parseInt(Framework.env.get("RetryLimit"));
+		int retryLimit = 1;
+		System.out.println("retryLimit="+retryLimit);
+		if (!result.isSuccess()) {
+			System.out.println("counter value="+counter);
+			 if(counter < retryLimit){
+				 counter++;
+			 return true;
+			 }
+			 }
+			 return false;
+			 
+	}
+
+	
 	
 	
 

@@ -47,7 +47,7 @@ public class Test1 extends BaseClass{
 	
 	
 	
-	@Test(groups= {"SmokeTest"})
+	@Test(groups= {"SmokeTest123"})
 	public void test11() throws Exception
 	{
 		
@@ -68,26 +68,74 @@ public class Test1 extends BaseClass{
 		 
 	}
 	
-		
-	@Test(groups= {"Smoke1Test"})
+	@Test(groups= {"SmokeTest123"})
 	public void test12() throws Exception
-	
 	{
-		//Long CurrentThread=Thread.currentThread().getId();
+		
 		Long CurrentThread = UIOperator.getCurrentThreadID();
 		Log.debug("************************test1 execution Start*********************************************");
 		//System.out.println("test1 Thread ID= " + CurrentThread);
 		//System.out.println("browser="+browser);
 		//HashMap<String,String> Data=readTestData(this.getClass().getSimpleName());
-		
+		JSONObject jsob = UIOperator.readTestDataJson("TestData.json");
+		System.out.println("inside Test JsonObject="+jsob.get("Job").toString());
+		System.out.println("inside Test JsonObject="+jsob.get("Name").toString());
 		UIOperator.OpenURL();
+		UIOperator.enterText("GoogleSearch_TextBox", jsob.get("SearchData").toString());
 		
 		UIOperator.takeSnapShot();
 		
-		Framework.logPass("Test12 Pass");
 		System.out.println("ending of test1()");
 		 
 	}
+	
+	@Test(groups= {"SmokeTest123"})
+	public void test14() throws Exception
+	{
+		
+		Long CurrentThread = UIOperator.getCurrentThreadID();
+		Log.debug("************************test1 execution Start*********************************************");
+		//System.out.println("test1 Thread ID= " + CurrentThread);
+		//System.out.println("browser="+browser);
+		//HashMap<String,String> Data=readTestData(this.getClass().getSimpleName());
+		JSONObject jsob = UIOperator.readTestDataJson("TestData.json");
+		System.out.println("inside Test JsonObject="+jsob.get("Job").toString());
+		System.out.println("inside Test JsonObject="+jsob.get("Name").toString());
+		UIOperator.OpenURL();
+		UIOperator.enterText("GoogleSearch_TextBox", jsob.get("SearchData").toString());
+		
+		UIOperator.takeSnapShot();
+		
+		System.out.println("ending of test1()");
+		 
+	}
+	
+	
+	
+	@Test(groups= {"SmokeTest123"})
+	public void test13() throws Exception
+	{
+		
+		Long CurrentThread = UIOperator.getCurrentThreadID();
+		Log.debug("************************test1 execution Start*********************************************");
+		//System.out.println("test1 Thread ID= " + CurrentThread);
+		//System.out.println("browser="+browser);
+		//HashMap<String,String> Data=readTestData(this.getClass().getSimpleName());
+		JSONObject jsob = UIOperator.readTestDataJson("TestData.json");
+		System.out.println("inside Test JsonObject="+jsob.get("Job").toString());
+		System.out.println("inside Test JsonObject="+jsob.get("Name").toString());
+		UIOperator.OpenURL();
+		UIOperator.enterText("GoogleSearch_TextBox", jsob.get("SearchData").toString());
+		
+		UIOperator.takeSnapShot();
+		
+		System.out.println("ending of test1()");
+		 
+	}	
+	
+	
+	
+	
 	
 	
 	@Test(groups= {"sanity"})

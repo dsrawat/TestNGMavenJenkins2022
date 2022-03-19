@@ -32,25 +32,38 @@ public class WebDriverWrapper {
 		System.out.println("Browser type="+BrowserType);
 		if(BrowserType.equalsIgnoreCase("chrome"))
 			{
-					System.out.println("Browser Chrome inside");
-					System.setProperty("webdriver.chrome.driver",Framework.env.get("DriverPath")+"\\chromedriver.exe");
-					capabilities=DesiredCapabilities.chrome();
-					capabilities.setBrowserName("chrome");
-					capabilities.setPlatform(Platform.WINDOWS);
 					
-					ChromeOptions options=new ChromeOptions();
-					if(Framework.env.get("Chrome_HeadlessBrowser").equalsIgnoreCase("Yes"))
-						options.addArguments("--headless");
-					options.setBinary(new File("C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"));
-					options.setCapability(CapabilityType.BROWSER_NAME, "chrome");
-					options.setCapability(CapabilityType.PLATFORM_NAME, "WINDOWS");
 					if(Framework.env.get("RemoteDriver").equalsIgnoreCase("Yes"))
 							{
-						
-						driver.set(new RemoteWebDriver(new URL("http://192.168.43.205:4444/wd/hub"), options));
+						System.out.println("broswer set done1");
+						capabilities=DesiredCapabilities.chrome();
+						ChromeOptions options=new ChromeOptions();
+						options.setCapability(CapabilityType.BROWSER_NAME, "chrome");
+						options.setCapability(CapabilityType.PLATFORM_NAME, "LINUX");
+						System.out.println("broswer set done2");
+						URL url = new URL("http://localhost:4444/wd/hub");
+						System.out.println("broswer set done3");
+						RemoteWebDriver rm = new RemoteWebDriver(url,capabilities);
+						System.out.println("broswer set done4");
+						driver.set(rm);
+						//driver.set(new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), options));
+						System.out.println("broswer set done5");
 							}
 					else
 					{
+						System.out.println("Browser Chrome inside");
+						WebDriverManager.chromedriver().setup();
+						//System.setProperty("webdriver.chrome.driver",Framework.env.get("DriverPath")+"\\chromedriver.exe");
+						capabilities=DesiredCapabilities.chrome();
+						capabilities.setBrowserName("chrome");
+						capabilities.setPlatform(Platform.WINDOWS);
+						
+						ChromeOptions options=new ChromeOptions();
+						if(Framework.env.get("Chrome_HeadlessBrowser").equalsIgnoreCase("Yes"))
+							options.addArguments("--headless");
+						//options.setBinary(new File("C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"));
+						options.setCapability(CapabilityType.BROWSER_NAME, "chrome");
+						options.setCapability(CapabilityType.PLATFORM_NAME, "WINDOWS");
 						
 						driver.set(new ChromeDriver(options));
 					}
@@ -64,7 +77,7 @@ public class WebDriverWrapper {
 			capabilities.setBrowserName("firefox");
 			capabilities.setPlatform(Platform.WINDOWS);
 			FirefoxOptions options=new FirefoxOptions();
-			options.setBinary("C:\\Program Files\\Mozilla Firefox\\firefox.exe");
+			//options.setBinary("C:\\Program Files\\Mozilla Firefox\\firefox.exe");
 			options.setCapability(CapabilityType.BROWSER_NAME, "firefox");
 			options.setCapability(CapabilityType.PLATFORM_NAME, "WINDOWS");
 			//ChromeOptions options=new ChromeOptions();
@@ -74,9 +87,9 @@ public class WebDriverWrapper {
 			//driver=new ChromeDriver(options);
 			if(Framework.env.get("RemoteDriver").equalsIgnoreCase("Yes"))
 			{
-		
+				capabilities=DesiredCapabilities.firefox();
 			//driver= new RemoteWebDriver(new URL("http://192.168.1.9:5556/wd/hub"),capabilities);
-			//driver.set(new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), options));
+			driver.set(new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities));
 			}
 			else
 			{

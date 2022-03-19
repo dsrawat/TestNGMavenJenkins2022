@@ -46,7 +46,8 @@ public class UIOperator {
 	{
 		 URL=Framework.env.get(Framework.env.get("Run_URL"));
 		 try {
-			 
+			 System.out.println("insdie open url method");
+			 System.out.println("url="+URL);
 			 WebDriverWrapper.getDriver().get(URL);
 			 WebDriverWrapper.getDriver().manage().window().maximize();
 			 //Framework.extentTestMap.get(UIOperator.getCurrentThreadID()).log(Status.PASS, "Open URL Successfully");

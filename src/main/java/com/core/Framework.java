@@ -2,10 +2,12 @@ package com.core;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Properties;
 
@@ -18,7 +20,9 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.json.simple.JSONObject;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -82,7 +86,140 @@ public class Framework {
 		
 	}
 	
+	
+	public Map abc(String ObjectName) throws IOException
+	{
+		Map<String,String> hs=null;
+		FileInputStream File=new FileInputStream(new File(Framework.env.get("RepositoryPath")));
+		//Workbook wb=new XSSFWorkbook();
+		System.out.println("repo="+Framework.env.get("RepositoryPath"));
+		wb = new  HSSFWorkbook(File);
+		sh=wb.getSheetAt(0);
+		int rowcount=sh.getLastRowNum();
+		int colcount=sh.getRow(1).getLastCellNum();
+		System.out.println("Row Count="+rowcount);
+		System.out.println("Column Count="+colcount);
+		String objectname1;
+		String ObjectValue="";
+		String PropertyName="";
+		String PropertyValue="";
+		String MatchingType="";
+		hs=new LinkedHashMap<String,String>();
+		for(int i=1;i<=rowcount;i++)
+		{
+			objectname1=sh.getRow(i).getCell(0).toString();
+			if(objectname1.equalsIgnoreCase(ObjectName))
+			{
+				
+				
+				
+				
+				
+				for(int j=1;j<colcount;j++)
+				{
+					
+					if(!sh.getRow(i).getCell(j).toString().equals(""))
+					{
+						PropertyName=sh.getRow(0).getCell(j).toString();
+						PropertyValue=sh.getRow(i).getCell(j).toString();
+						
+						hs.put(PropertyName, PropertyValue);
+						
+						
+					}
+					
+				}
+				
+				
+			}
+			if(!ObjectValue.isEmpty())
+				break;
+			
+			
+		
+			
+		}
+		System.out.print("Linked hashmap value="+hs);
+		return hs;
+	}
 	public String readObjectRepository(String ObjectName) throws IOException
+	{
+		HashMap<String,String> hs=null;
+		FileInputStream File=new FileInputStream(new File(Framework.env.get("RepositoryPath")));
+		//Workbook wb=new XSSFWorkbook();
+		System.out.println("repo="+Framework.env.get("RepositoryPath"));
+		wb = new  HSSFWorkbook(File);
+		sh=wb.getSheetAt(0);
+		int rowcount=sh.getLastRowNum();
+		int colcount=sh.getRow(1).getLastCellNum();
+		System.out.println("Row Count="+rowcount);
+		System.out.println("Column Count="+colcount);
+		String objectname1;
+		String ObjectValue="";
+		String PropertyName="";
+		String PropertyValue="";
+		hs=new HashMap<String,String>();
+		for(int i=1;i<=rowcount;i++)
+		{
+			objectname1=sh.getRow(i).getCell(0).toString();
+			if(objectname1.equalsIgnoreCase(ObjectName))
+			{
+				
+				
+				
+				
+				
+				for(int j=1;j<colcount;j++)
+				{
+					
+					if(!sh.getRow(i).getCell(j).toString().equals(""))
+					{
+						PropertyName=sh.getRow(0).getCell(j).toString();
+						PropertyValue=sh.getRow(i).getCell(j).toString();
+					}
+					
+				}
+				
+				System.out.println("hashmap value="+hs);
+			}
+			if(!ObjectValue.isEmpty())
+				break;
+		}
+		String MatchingType="";
+		switch(PropertyName)
+        {
+            case "ID":
+                System.out.println("ID Matched");
+                MatchingType="ID";
+                break;
+            case "Name":
+                System.out.println("two");
+                MatchingType="Name";
+                break;
+            case "ClassName":
+                System.out.println("three");
+                MatchingType="ClassName";
+                break;
+            case "PartialLinkText":
+            	MatchingType="PartialLinkText";
+                break;
+            case "LinkText":
+            	MatchingType="LinkText";
+                break;
+            case "Xpath":
+            	MatchingType="Xpath";
+                break;
+            case "CSS":
+            	MatchingType="CSS";
+                break;
+            default:
+                System.out.println("no match");
+        }
+		
+		return MatchingType+"_"+PropertyValue;
+	}
+	
+	public String readObjectRepositoryLatest(String ObjectName) throws IOException
 	{
 		HashMap<String,String> hs=null;
 		FileInputStream File=new FileInputStream(new File(Framework.env.get("RepositoryPath")));
@@ -167,7 +304,6 @@ public class Framework {
 		
 		return MatchingType+"_"+PropertyValue;
 	}
-	
 	
 	
 	

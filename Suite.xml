@@ -4,7 +4,7 @@
 
 
 
-<suite name="Parallel Tests"   parallel="tests" thread-count="3" verbose="1">
+<suite name="Parallel Tests"   parallel="methods" thread-count="3" verbose="1">
 <listeners>
 <listener class-name="com.core.AnnotationTransformer"/>
 <listener class-name="com.core.GenerateReport"/>
@@ -22,18 +22,7 @@
 </classes>
 </test>
 
-<test name="Simple Test2">
-<parameter name="browser" value="firefox"/>
-<groups>
-    <run>
-      <include name="SmokeTest123"/>
-    </run>
-  </groups>
-<classes>
-<class name="TestNGFramework.TestNGMavenGitJenkins.Test1"/>
 
-</classes>
-</test>
 
 
 </suite>

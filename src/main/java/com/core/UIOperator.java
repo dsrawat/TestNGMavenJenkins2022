@@ -7,7 +7,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Set;
 
 import javax.imageio.ImageIO;
 
@@ -61,12 +64,12 @@ public class UIOperator {
 		
 	}
 	
-	public static void click(String ObjectName) throws IOException
+	/*public static void click(String ObjectName) throws IOException
 	{
 		try {
 			String values[]=new Framework().readObjectRepository(ObjectName).split("_");
-			WebElement ele=add(values);
-			ele.click();
+			//WebElement ele=add(values);
+			//ele.click();
 			}
 			catch(Exception e)
 			{
@@ -75,20 +78,297 @@ public class UIOperator {
 				//Framework.Report.addReportStepError("Unable to Enter Text of "+ObjectName);
 			}
 		
+	}*/
+	
+	
+	public static String getText(String ObjectName) throws Exception
+	{
+		String returnText="";
+		int foundElement=0;
+		try {
+			
+			String values[];
+			ArrayList al= new ArrayList();
+			WebElement ele;
+			LinkedHashMap LM = new LinkedHashMap();
+			int mapsize;
+			int i=0;
+			try {
+				LM =(LinkedHashMap) new Framework().abc(ObjectName);
+				
+				Set<String> keys = LM.keySet();
+		        mapsize = LM.size();
+		        System.out.println("mapsize="+mapsize);
+		        
+		        for (String key : keys) {
+		            System.out.println(key + " -- "
+		                               + LM.get(key));
+		            al.clear();
+		            al.add(key+"_"+LM.get(key));
+		            try {
+		            	i++;	
+		            ele =add(al);
+		            
+		            
+		           
+		            	
+		            	returnText = ele.getText();
+		            	System.out.println("returnText="+returnText);
+		            	foundElement=1;
+		            	break;
+		            }
+		            catch(Exception e)
+		            {
+		            	System.out.println("find exception="+e.toString());
+		            }
+		            
+		            
+		        }
+		        System.out.println("i="+i);
+		        if(foundElement==0)
+		        {
+		        	
+		        	
+		        	if(i == mapsize)
+		        	{
+		        		System.out.println("i="+i);
+		        		System.out.print("mapsize="+mapsize);
+		        		throw new LocateElementError("Unable to enter Value Errormsg");
+		        	}
+		        }
+			}
+			catch(Exception e)
+			{
+				System.out.println("Exception msg="+e.getMessage());
+				Framework.logFail("Unable to enter value");
+				Assert.fail(e.getMessage());
+			}
+		
+
+		
+		}
+		catch(Exception e)
+		{
+			
+			//Framework.logFail("Unable to enter Value in textbox");
+			//UIOperator.takeSnapShot();
+			Framework.logFail("Unable to enter value");
+			Assert.fail("Unable to enter value in Textbox in application");
+			
+		}
+		
+		return returnText;
 	}
+	
+	public static void clear(String ObjectName) throws Exception
+	{
+		int foundElement=0;
+		try {
+			
+			String values[];
+			ArrayList al= new ArrayList();
+			WebElement ele;
+			LinkedHashMap LM = new LinkedHashMap();
+			int mapsize;
+			int i=0;
+			try {
+				LM =(LinkedHashMap) new Framework().abc(ObjectName);
+				
+				Set<String> keys = LM.keySet();
+		        mapsize = LM.size();
+		        System.out.println("mapsize="+mapsize);
+		        
+		        for (String key : keys) {
+		            System.out.println(key + " -- "
+		                               + LM.get(key));
+		            al.clear();
+		            al.add(key+"_"+LM.get(key));
+		            try {
+		            	i++;	
+		            ele =add(al);
+		            
+		            
+		           
+		            	
+		            	ele.clear();
+		            	foundElement=1;
+		            	break;
+		            }
+		            catch(Exception e)
+		            {
+		            	System.out.println("find exception="+e.toString());
+		            }
+		            
+		            
+		        }
+		        System.out.println("i="+i);
+		        if(foundElement==0)
+		        {
+		        	
+		        	if(i == mapsize)
+		        	{
+		        		System.out.println("i="+i);
+		        		System.out.print("mapsize="+mapsize);
+		        		throw new LocateElementError("Unable to enter Value Errormsg");
+		        	}
+		        }
+			}
+			catch(Exception e)
+			{
+				System.out.println("Exception msg="+e.getMessage());
+				Framework.logFail("Unable to enter value");
+				Assert.fail(e.getMessage());
+			}
+		
+
+		
+		}
+		catch(Exception e)
+		{
+			
+			//Framework.logFail("Unable to enter Value in textbox");
+			//UIOperator.takeSnapShot();
+			Framework.logFail("Unable to enter value");
+			Assert.fail("Unable to enter value in Textbox in application");
+			
+		}
+	}
+	
+
+
+	
+	public static void click(String ObjectName) throws Exception
+	{
+		int foundElement=0;
+		try {
+			
+			String values[];
+			ArrayList al= new ArrayList();
+			WebElement ele;
+			LinkedHashMap LM = new LinkedHashMap();
+			int mapsize;
+			int i=0;
+			try {
+				LM =(LinkedHashMap) new Framework().abc(ObjectName);
+				
+				Set<String> keys = LM.keySet();
+		        mapsize = LM.size();
+		        System.out.println("mapsize="+mapsize);
+		        
+		        for (String key : keys) {
+		            System.out.println(key + " -- "
+		                               + LM.get(key));
+		            al.clear();
+		            al.add(key+"_"+LM.get(key));
+		            try {
+		            	i++;	
+		            ele =add(al);
+		            
+		            
+		           
+		            	
+		            	ele.click();
+		            	foundElement=1;
+		            	break;
+		            }
+		            catch(Exception e)
+		            {
+		            	System.out.println("find exception="+e.toString());
+		            }
+		            
+		            
+		        }
+		        System.out.println("i="+i);
+		        if(foundElement==0)
+		        {
+		        	
+		        	if(i == mapsize)
+		        	{
+		        		System.out.println("i="+i);
+		        		System.out.print("mapsize="+mapsize);
+		        		throw new LocateElementError("Unable to enter Value Errormsg");
+		        	}
+		        }
+			}
+			catch(Exception e)
+			{
+				System.out.println("Exception msg="+e.getMessage());
+				Framework.logFail("Unable to enter value");
+				Assert.fail(e.getMessage());
+			}
+		
+
+		
+		}
+		catch(Exception e)
+		{
+			
+			//Framework.logFail("Unable to enter Value in textbox");
+			//UIOperator.takeSnapShot();
+			Framework.logFail("Unable to enter value");
+			Assert.fail("Unable to enter value in Textbox in application");
+			
+		}
+	}
+	
+
 	
 	public static void enterText(String ObjectName,String Value) throws Exception
 	{
 		try {
 			
-			
-			
-		String values[]=new Framework().readObjectRepository(ObjectName).split("_");
-		WebElement ele=add(values);
-		System.out.println("Values length = "+values.length);
-		System.out.println("Values 0 = "+values[0]);
-		System.out.println("Values 1 = "+values[1]);
-		ele.sendKeys(Value);
+			String values[];
+			ArrayList al= new ArrayList();
+			WebElement ele;
+			LinkedHashMap LM = new LinkedHashMap();
+			int mapsize;
+			int i=0;
+			try {
+				LM =(LinkedHashMap) new Framework().abc(ObjectName);
+				
+				Set<String> keys = LM.keySet();
+		        mapsize = LM.size();
+		        System.out.println("mapsize="+mapsize);
+		        
+		        for (String key : keys) {
+		            System.out.println(key + " -- "
+		                               + LM.get(key));
+		            al.clear();
+		            al.add(key+"_"+LM.get(key));
+		            try {
+		            	i++;	
+		            ele =add(al);
+		            
+		            
+		           
+		            	
+		            	ele.sendKeys(Value);
+		            	break;
+		            }
+		            catch(Exception e)
+		            {
+		            	System.out.println("find exception="+e.toString());
+		            }
+		            
+		            
+		        }
+		        System.out.println("i="+i);
+		        if(i == mapsize)
+	            {
+	            	System.out.println("i="+i);
+	            	System.out.print("mapsize="+mapsize);
+	            	throw new LocateElementError("Unable to enter Value Errormsg");
+	            }
+			}
+			catch(Exception e)
+			{
+				System.out.println("Exception msg="+e.getMessage());
+				Framework.logFail("Unable to enter value");
+				Assert.fail(e.getMessage());
+			}
+		
+
+		
 		}
 		catch(Exception e)
 		{
@@ -102,7 +382,7 @@ public class UIOperator {
 	}
 	
 	
-	public static WebElement add(String values[]) {
+	public static WebElement addActual(String values[]) {
 		
 		WebElement ele=null;
 		switch(values[0])
@@ -135,6 +415,50 @@ public class UIOperator {
 		
 		return ele;
 	}
+	
+	
+public static WebElement add(ArrayList al) {
+		
+		WebElement ele=null;
+		String values[];
+		String value = al.get(0).toString();
+		System.out.println("Values in add method array al="+value);
+		values = value.split("_");
+		switch(values[0])
+        {
+            case "ID":
+                ele=WebDriverWrapper.getDriver().findElement(By.id(values[1]));
+                break;
+            case "Name":
+            	//ele=Framework.driver.findElement(By.name(values[1]));
+            	ele=WebDriverWrapper.getDriver().findElement(By.name(values[1]));
+                break;
+            case "ClassName":
+            	System.out.println("Values1="+values[1]);
+            	ele=WebDriverWrapper.getDriver().findElement(By.className(values[1]));
+                break;
+            case "PartialLinkText":
+            	//ele=Framework.driver.findElement(By.partialLinkText(values[1]));
+                break;
+            case "LinkText":
+            	//ele=Framework.driver.findElement(By.linkText(values[1]));
+                break;
+            case "Xpath":
+            	System.out.println("Values1="+values[1]);
+            	ele=WebDriverWrapper.getDriver().findElement(By.xpath(values[1]));
+                break;
+            case "CSS":
+            	//ele=Framework.driver.findElement(By.cssSelector(values[1]));
+                break;
+            default:
+                System.out.println("no match");
+        }
+		
+		return ele;
+	}
+	
+	
+	
 	
 	/*
 	public synchronized void takeSnapShot(String ClassName,String MethodName) throws Exception{

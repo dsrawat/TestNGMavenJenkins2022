@@ -9,5 +9,5 @@ Chrome_HeadlessBrowser=No
 Firefox_HeadlessBrowser=No
 GenerateScreenshot=Yes
 GenerateScreenshotPDF=No
-RemoteDriver=Yes
-RetryLimit=1
+RemoteDriver=No
+RetryLimit=0

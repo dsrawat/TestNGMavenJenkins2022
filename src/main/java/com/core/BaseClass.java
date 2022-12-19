@@ -206,8 +206,8 @@ public class BaseClass implements IRetryAnalyzer  {
 	@Override
 	public boolean retry(ITestResult result) {
 		//int counter = 0;
-		//int retryLimit = Integer.parseInt(Framework.env.get("RetryLimit"));
-		int retryLimit = 1;
+		int retryLimit = Integer.parseInt(Framework.env.get("RetryLimit"));
+		//int retryLimit = 1;
 		System.out.println("retryLimit="+retryLimit);
 		if (!result.isSuccess()) {
 			System.out.println("counter value="+counter);

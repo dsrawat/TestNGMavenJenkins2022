@@ -10,4 +10,4 @@ Firefox_HeadlessBrowser=No
 GenerateScreenshot=Yes
 GenerateScreenshotPDF=No
 RemoteDriver=No
-RetryLimit=0
+RetryLimit=1

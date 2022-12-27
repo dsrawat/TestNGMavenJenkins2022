@@ -4,7 +4,7 @@
 
 
 
-<suite name="Parallel Tests"   parallel="methods" thread-count="3" verbose="1">
+<suite name="Parallel Tests"   parallel="methods" thread-count="2" verbose="1">
 <listeners>
 <listener class-name="com.core.AnnotationTransformer"/>
 <listener class-name="com.core.GenerateReport"/>
@@ -17,7 +17,7 @@
     </run>
   </groups>
 <classes>
-<class name="TestNGFramework.TestNGMavenGitJenkins.Test1"/>
+<class name="Test.Test1"/>
 
 </classes>
 </test>

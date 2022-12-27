@@ -33,7 +33,10 @@ import com.core.BaseClass;
 import com.core.Framework;
 import com.core.Reporter;
 import com.core.UIOperator;
+import com.core.WebDriverWrapper;
 import com.dependentMethods.ProjectSpecificMethods;
+
+import PageObject.GoogleHomePage;
 
 import org.testng.asserts.Assertion;
 
@@ -60,15 +63,19 @@ public class Test1 extends BaseClass{
 		System.out.println("inside Test JsonObject="+jsob.get("Job").toString());
 		System.out.println("inside Test JsonObject="+jsob.get("Name").toString());
 		UIOperator.OpenURL();
-		UIOperator.enterText("GoogleSearch_TextBox", jsob.get("SearchData").toString());
+		//UIOperator.enterText1("GoogleSearch_TextBox", jsob.get("SearchData").toString());
 		
+		GoogleHomePage Ghome=new GoogleHomePage(WebDriverWrapper.getDriver());
+		Ghome.enterSearchText("Dharam");
+		//String  st = UIOperator.getText("GoogleOffered");
+		//System.out.println("st="+st);
 		UIOperator.takeSnapShot();
 		
 		System.out.println("ending of test1()");
 		 
 	}
 	
-	@Test(groups= {"SmokeTest123"})
+	@Test(groups= {"SmokeTest1234"})
 	public void test12() throws Exception
 	{
 		
@@ -81,7 +88,7 @@ public class Test1 extends BaseClass{
 		System.out.println("inside Test JsonObject="+jsob.get("Job").toString());
 		System.out.println("inside Test JsonObject="+jsob.get("Name").toString());
 		UIOperator.OpenURL();
-		UIOperator.enterText("GoogleSearch_TextBox", jsob.get("SearchData").toString());
+		UIOperator.enterText1("GoogleSearch_TextBox", jsob.get("SearchData").toString());
 		
 		UIOperator.takeSnapShot();
 		
@@ -89,11 +96,11 @@ public class Test1 extends BaseClass{
 		 
 	}
 	
-	@Test(groups= {"SmokeTest123"})
+	@Test(groups= {"SmokeTest1234"})
 	public void test14() throws Exception
 	{
 		
-		Long CurrentThread = UIOperator.getCurrentThreadID();
+		
 		Log.debug("************************test1 execution Start*********************************************");
 		//System.out.println("test1 Thread ID= " + CurrentThread);
 		//System.out.println("browser="+browser);
@@ -102,7 +109,7 @@ public class Test1 extends BaseClass{
 		System.out.println("inside Test JsonObject="+jsob.get("Job").toString());
 		System.out.println("inside Test JsonObject="+jsob.get("Name").toString());
 		UIOperator.OpenURL();
-		UIOperator.enterText("GoogleSearch_TextBox", jsob.get("SearchData").toString());
+		UIOperator.enterText1("GoogleSearch_TextBox", jsob.get("SearchData").toString());
 		
 		UIOperator.takeSnapShot();
 		
@@ -112,11 +119,11 @@ public class Test1 extends BaseClass{
 	
 	
 	
-	@Test(groups= {"SmokeTest123"})
+	@Test(groups= {"SmokeTest1234"})
 	public void test13() throws Exception
 	{
 		
-		Long CurrentThread = UIOperator.getCurrentThreadID();
+		
 		Log.debug("************************test1 execution Start*********************************************");
 		//System.out.println("test1 Thread ID= " + CurrentThread);
 		//System.out.println("browser="+browser);
@@ -125,7 +132,7 @@ public class Test1 extends BaseClass{
 		System.out.println("inside Test JsonObject="+jsob.get("Job").toString());
 		System.out.println("inside Test JsonObject="+jsob.get("Name").toString());
 		UIOperator.OpenURL();
-		UIOperator.enterText("GoogleSearch_TextBox", jsob.get("SearchData").toString());
+		UIOperator.enterText1("GoogleSearch_TextBox", jsob.get("SearchData").toString());
 		
 		UIOperator.takeSnapShot();
 		
@@ -133,7 +140,26 @@ public class Test1 extends BaseClass{
 		 
 	}	
 	
-	
+	@Test(groups= {"SmokeTest1234"})
+	public void test15() throws Exception
+	{
+		
+		Long CurrentThread = UIOperator.getCurrentThreadID();
+		Log.debug("************************test1 execution Start*********************************************");
+		//System.out.println("test1 Thread ID= " + CurrentThread);
+		//System.out.println("browser="+browser);
+		//HashMap<String,String> Data=readTestData(this.getClass().getSimpleName());
+		JSONObject jsob = UIOperator.readTestDataJson("TestData.json");
+		System.out.println("inside Test JsonObject="+jsob.get("Job").toString());
+		System.out.println("inside Test JsonObject="+jsob.get("Name").toString());
+		UIOperator.OpenURL();
+		UIOperator.enterText1("GoogleSearch_TextBox", jsob.get("SearchData").toString());
+		
+		UIOperator.takeSnapShot();
+		
+		System.out.println("ending of test1()");
+		 
+	}	
 	
 	
 	

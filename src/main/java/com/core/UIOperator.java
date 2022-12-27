@@ -312,8 +312,8 @@ public class UIOperator {
 	}
 	
 
-	
-	public static void enterText(String ObjectName,String Value) throws Exception
+	//With objectname as string
+	public static void enterText1(String ObjectName,String Value) throws Exception
 	{
 		try {
 			
@@ -381,7 +381,34 @@ public class UIOperator {
 		}
 	}
 	
+	//start
 	
+	//With objectname as object
+		public static void enterText(WebElement ObjectName,String Value) throws Exception
+		{
+			
+				
+				
+			            try {
+			            	
+			            	
+			            	ObjectName.sendKeys(Value);
+			            	
+			            }
+			            catch(Exception e)
+			{
+				
+				//Framework.logFail("Unable to enter Value in textbox");
+				//UIOperator.takeSnapShot();
+				Framework.logFail("Unable to enter value");
+				Assert.fail("Unable to enter value in Textbox in application");
+				
+			}
+		}
+	
+	
+	
+	//end
 	public static WebElement addActual(String values[]) {
 		
 		WebElement ele=null;

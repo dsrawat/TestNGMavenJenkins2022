@@ -42,6 +42,7 @@ public class WebDriverWrapper {
 						options.setCapability(CapabilityType.PLATFORM_NAME, "LINUX");
 						System.out.println("broswer set done2");
 						URL url = new URL("http://localhost:4444/wd/hub");
+						//URL url = new URL("http://localhost:4444");
 						System.out.println("broswer set done3");
 						RemoteWebDriver rm = new RemoteWebDriver(url,capabilities);
 						System.out.println("broswer set done4");

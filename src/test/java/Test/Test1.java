@@ -36,7 +36,7 @@ import com.core.UIOperator;
 import com.core.WebDriverWrapper;
 import com.dependentMethods.ProjectSpecificMethods;
 
-import PageObject.GoogleHomePage;
+
 
 import org.testng.asserts.Assertion;
 
@@ -65,10 +65,7 @@ public class Test1 extends BaseClass{
 		UIOperator.OpenURL();
 		//UIOperator.enterText1("GoogleSearch_TextBox", jsob.get("SearchData").toString());
 		
-		GoogleHomePage Ghome=new GoogleHomePage(WebDriverWrapper.getDriver());
-		Ghome.enterSearchText("Dharam");
-		//String  st = UIOperator.getText("GoogleOffered");
-		//System.out.println("st="+st);
+		
 		UIOperator.takeSnapShot();
 		
 		System.out.println("ending of test1()");
@@ -88,10 +85,7 @@ public class Test1 extends BaseClass{
 		UIOperator.OpenURL();
 		//UIOperator.enterText1("GoogleSearch_TextBox", jsob.get("SearchData").toString());
 		
-		GoogleHomePage Ghome=new GoogleHomePage(WebDriverWrapper.getDriver());
-		Ghome.enterSearchText("Dharam");
-		//String  st = UIOperator.getText("GoogleOffered");
-		//System.out.println("st="+st);
+		
 		UIOperator.takeSnapShot();
 		
 		System.out.println("ending of test1()");

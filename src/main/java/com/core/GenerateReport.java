@@ -3,6 +3,7 @@ package com.core;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.poi.util.SystemOutLogger;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -42,6 +43,7 @@ public class GenerateReport  implements ITestListener {
 
 	@Override
 	public synchronized void onTestStart(ITestResult result) {
+		System.out.println("Hello onTestStart = " +result.getMethod());
 		startTest(result.getMethod().getMethodName(),"");
 	}
 
@@ -52,19 +54,12 @@ public class GenerateReport  implements ITestListener {
 
 	@Override
 	public synchronized void onTestFailure(ITestResult result) {
-        MediaEntityModelProvider mediaModel;
-        //getTest().pass("TestCase Fail");
-		/*try {
-			mediaModel = MediaEntityBuilder.createScreenCaptureFromPath(takeScreenshot()).build();
-			getTest().fail(result.getThrowable(), mediaModel);
-		} catch (IOException e) {
-			getTest().fail(result.getThrowable());
-		}*/
+       
 	}
 
 	@Override
 	public synchronized void onTestSkipped(ITestResult result) {
-		getTest().skip(result.getThrowable());
+		
 	}
 
 	@Override

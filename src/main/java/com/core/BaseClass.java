@@ -33,10 +33,10 @@ public class BaseClass implements IRetryAnalyzer  {
 	String optbrowser="firefox";
 	int counter=0;
 	@BeforeSuite(alwaysRun=true)
-	public void beforSuite() throws IOException 
+	public void setUP() throws IOException 
 	{
 		
-		System.out.println("Before Suite - Start ");
+		System.out.println("----------------Before Suite - Start----------BaseClass - setUP------------");
 		FileInputStream file=null;
 		try {
 			file = new FileInputStream(new File(System.getProperty("user.dir")+"\\Logs\\Log4j.properties"));
@@ -48,112 +48,26 @@ public class BaseClass implements IRetryAnalyzer  {
 		//Log=Logger.getLogger(Test1.class);
 		try {
 			Framework.collectEnvironmentData();
-			//Log.debug("************************Collecting Envirnonment Data*************************************************");
-			/*var=System.getProperty("user.dir")+"\\"+"Report";
-			System.out.println(var);
-			File file1 = new File(var);
-	        if (!file1.exists()) {
-	            if (file1.mkdir()) {
-	                System.out.println("Directory is created!");
-	            } else {
-	                System.out.println("Failed to create directory!");
-	            }
-			
-	        }	
-	        
-	        
-	        var1=var+"\\"+"Report"+java.time.LocalDate.now()+"_"+java.time.LocalTime.now().toString().replace(".","").replace(":","");
-			System.out.println(var1);
-			Framework.ReportPath=var1;
-			File file2 = new File(var1);
-	        if (!file2.exists()) {
-	            if (file2.mkdir()) {
-	                System.out.println("Directory is created!");
-	            } else {
-	                System.out.println("Failed to create directory!");
-	            }
-			
-	        }*/	
+			Framework.extent=ExtentManager.getInstance();
 	        
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Framework.extent=ExtentManager.getInstance();
-		//ExtentManager.initializeReport();
-		System.out.println("Before Suite - End ");
 		
-	}
-	
-	@AfterSuite(alwaysRun=true)
-	public void afterSuite() throws IOException
-	{
-		System.out.println("After Suite - Start");
 		
-		//Log.debug("************************Browser Closed*************************************************");
-		//Framework.driver.quit();
-		//ExtentManager.writeReporter();
-		//Framework.Report.getInstance().flush();
-		
-		System.out.println("After Suite - End");
-	}
-	
-	@Parameters({"browser"})
-	@BeforeMethod(alwaysRun=true)
-	public void beforeTest(@Optional("firefox") String browser) throws IOException
-	{
-		System.out.println("Before Test - Start");
-		//System.out.println("Hello="+Thread.currentThread().getStackTrace()[1].getClassName());
-		//.out.println("Hello1="+Thread.currentThread().getStackTrace()[1].getMethodName());
-		Framework.startDriver(browser);
-		System.out.println("Thread in PDF Document="+Thread.currentThread().getId());
-		Long t=Thread.currentThread().getId();
-		PDDocument doc=new PDDocument();
-		//doc.addPage(new PDPage());
-		//doc.save(Framework.ReportPath+"\\"+"Screens"+Math.random()+".pdf");
-		Framework.document.put(t, doc);
-		
-		System.out.println("Thread value="+Framework.document.get(Thread.currentThread().getId()));
-		//Framework.document = new PDDocument();
-		//Framework.Report.createInstance();
-		//Framework.Report.createInstance();
-		System.out.println("After report initialize Thread number="+Thread.currentThread().getId());
-		//ExtentManager.startReport();
-		//WebDriverWrapper.getDriver().get(url);
-		//framework.driver.quit();
-		//Log.debug("************************Browser Closed*************************************************");
-		
-		System.out.println("Before Test - End");
-	}
-	
-	@AfterMethod(alwaysRun=true)
-	public void afterTest() throws IOException
-	{
-		System.out.println("After Test - Start");
-		//framework.startDriver();
-		//Framework.driver.close();
-		//Framework.driver.quit();
-		//Framework.Report.getInstance().flush();
-		WebDriverWrapper.getDriver().quit();
-		//Log.debug("************************Browser Closed*************************************************");
-		System.out.println("After Test - End");
+		System.out.println("----------------Before Suite - End-----------BaseClass - setUP------------------");
 		
 	}
 	
 	@BeforeClass(alwaysRun=true)
-	public void beforeclass()
+	public void createClassDirectory()
 	{
-		System.out.println("before Class - Start");
+		System.out.println("----------------before Class - Start------BaseClass - createClassDirectory----------");
 		System.out.println("Name of the class"+this.getClass().getSimpleName());
-		//String folderpath=;
+		
 		Framework.currentClassName=this.getClass().getSimpleName();
-		
-		//WebDriverWrapper.classNameTesting.set(this.getClass().getSimpleName());
-		//System.out.println("class name stored in thread local="+WebDriverWrapper.classNameTesting.get());
-		
-		
-		
 		System.out.println(System.getProperty("user.dir")+this.getClass().getSimpleName());
 		File file = new File(Framework.ReportPath+"\\"+this.getClass().getSimpleName());
         if (!file.exists()) {
@@ -163,18 +77,60 @@ public class BaseClass implements IRetryAnalyzer  {
                 System.out.println("Failed to create directory!");
             }
         }
-        System.out.println("Before Class - End");
+        System.out.println("----------------Before Class - End-------BaseClass - createClassDirectory---------");
 		
 	}
 	
+	
 	@BeforeMethod(alwaysRun=true)
-	public void setTestData(Method result) throws IOException
+	public void cretePDFDocument() throws IOException
 	{
-		System.out.println("Before Method - Start");
+		System.out.println("----------------Before Test - Start------BaseClass - cretePDFDocument----------");
+		
+		//Framework.startDriver(browser);
+		System.out.println("Thread in PDF Document="+Thread.currentThread().getId());
+		Long t=Thread.currentThread().getId();
+		PDDocument doc=new PDDocument();
+		Framework.document.put(t, doc);
+		//System.out.println("Thread value="+Framework.document.get(Thread.currentThread().getId()));
+		//System.out.println("After report initialize Thread number="+Thread.currentThread().getId());
+		System.out.println("----------------Before Test - End-------BaseClass - cretePDFDocument---------");
+	}
+	
+	
+	
+	@BeforeMethod(alwaysRun=true)
+	public void browserFactory() throws IOException
+	{
+		System.out.println("----------------Before Test - Start------BaseClass - browserFactory----------");
+		
+		//Framework.startDriver(browser);
+		System.out.println("app.broswer = "+App.browser);
+		Framework.startDriver(App.browser);
+		
+		System.out.println("----------------Before Test - End-------BaseClass - browserFactory---------");
+	}
+	
+	@AfterMethod(alwaysRun=true)
+	public void quitAfterEachTest() throws IOException
+	{
+		System.out.println("----------------After Test - Start-------BaseClass - quitAfterEachTest---------");
+		
+		WebDriverWrapper.getDriver().quit();
+	
+		System.out.println("----------------After Test - End---------BaseClass - quitAfterEachTest-------");
+		
+	}
+	
+	
+	
+	@BeforeMethod(alwaysRun=true)
+	public void createTestDirectory(Method result) throws IOException
+	{
+		System.out.println("----------------Before Method - Start--------BaseClass - createTestDirectory--------");
 		System.out.println("inside setTestData method to create test folder");
 		System.out.println("curent execute Test Method="+result.getName());
-		Framework.currentMethodName=result.getName();
-		//Framework.document = new PDDocument();
+		Framework.currentMethodName=result.getName();	
 		System.out.println("Full path for creating test folder="+Framework.ReportPath+"\\"+this.getClass().getSimpleName()+"\\"+Framework.currentMethodName);
 		File file = new File(Framework.ReportPath+"\\"+this.getClass().getSimpleName()+"\\"+Framework.currentMethodName);
         if (!file.exists()) {
@@ -184,30 +140,42 @@ public class BaseClass implements IRetryAnalyzer  {
                 System.out.println("Failed to create directory!");
             }
         }
-		
+
 		Framework.Data=Framework.readTestData(result.getName());
 		
-		System.out.println("Before Method - End");
+		System.out.println("----------------Before Method - End-------BaseClass - createTestDirectory---------");
 		
 		
 	}
 	
+	/*
+	@BeforeMethod(alwaysRun=true)
+	public void setTestData(Method result) throws IOException
+	{
+		
+
+		//Framework.Data=Framework.readTestData(result.getName());
+		
+		System.out.println("----------------Before Method - End-------setTestData---------");
+		
+		
+	}*/
+	
 	@AfterMethod(alwaysRun=true)
 	public void setReportData(Method result) throws IOException
 	{
-		System.out.println("After Method - Start");
+		System.out.println("----------------After Method - Start-------BaseClass - setReportData---------");
 		System.out.println("curent execute Test Method="+result.getName());
 		Framework.Data=Framework.readTestData(result.getName());
-		//Framework.Report.endScenario();
 		Framework.document.get(Thread.currentThread().getId()).close();
-		System.out.println("After Method - End");
+		System.out.println("----------------After Method - End-------BaseClass - setReportData---------");
 	}
 
 	@Override
 	public boolean retry(ITestResult result) {
-		//int counter = 0;
+		
 		int retryLimit = Integer.parseInt(Framework.env.get("RetryLimit"));
-		//int retryLimit = 1;
+		
 		System.out.println("retryLimit="+retryLimit);
 		if (!result.isSuccess()) {
 			System.out.println("counter value="+counter);
@@ -221,7 +189,14 @@ public class BaseClass implements IRetryAnalyzer  {
 	}
 
 	
-	
+	@AfterSuite(alwaysRun=true)
+	public void afterSuite() throws IOException
+	{
+		System.out.println("----------------After Suite - Start----------------");
+		
+		
+		System.out.println("----------------After Suite - End-------------------");
+	}
 	
 
 }

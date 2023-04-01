@@ -34,7 +34,7 @@ import org.json.simple.parser.ParseException;
 public class Framework {
 
 	public static WebDriverWrapper driverWrapper;
-	private static WebDriver driver;
+	//private static WebDriver driver;
 	public static HashMap<String,String> env=new HashMap<String,String>();
 	public static ExtentManager Report=new ExtentManager();
 	public static HashMap<String,String> Data=new HashMap<String,String>();
@@ -48,19 +48,21 @@ public class Framework {
 	HSSFSheet sh;
 	
 	
+	
 	public static void startDriver(String browser) throws IOException
 	{
-		System.out.println("StartDriver - Begin");
+		System.out.println("----------------Framework - startDriver- Start---------------");
 		driverWrapper=new WebDriverWrapper();
 		//driver=driverWrapper.initializeDriver(env.get("BrowserType"),env.get("DriverPath"));
 		WebDriverWrapper.initializeDriver(browser,env.get("DriverPath"));
 		initializeRepository();
-		System.out.println("StartDriver - End");
+		System.out.println("----------------Framework - startDriver- End---------------");
 	}
 	
 	public static void collectEnvironmentData() throws IOException{
 		
 		//Load Properties File
+		System.out.println("----------------Framework - collectEnvironmentData- Start---------------");
 				String PathToConfigFile=System.getProperty("user.dir");
 				System.out.println(PathToConfigFile);
 				Properties prop=new Properties();
@@ -75,6 +77,7 @@ public class Framework {
 				  env.put(key, Value);
 				  }
 				  System.out.println("env="+env);
+		System.out.println("----------------Framework - collectEnvironmentData- End---------------");
 	}
 	
 	public static void initializeRepository() throws IOException
@@ -144,6 +147,7 @@ public class Framework {
 	}
 	public String readObjectRepository(String ObjectName) throws IOException
 	{
+		System.out.println("----------------Framework - readObjectRepository- Start---------------");
 		HashMap<String,String> hs=null;
 		FileInputStream File=new FileInputStream(new File(Framework.env.get("RepositoryPath")));
 		//Workbook wb=new XSSFWorkbook();
@@ -215,12 +219,14 @@ public class Framework {
             default:
                 System.out.println("no match");
         }
-		
+		System.out.println("----------------Framework - readObjectRepository- Start---------------");
 		return MatchingType+"_"+PropertyValue;
 	}
 	
 	public String readObjectRepositoryLatest(String ObjectName) throws IOException
 	{
+		
+		System.out.println("----------------Framework - readObjectRepositoryLatest- Start---------------");
 		HashMap<String,String> hs=null;
 		FileInputStream File=new FileInputStream(new File(Framework.env.get("RepositoryPath")));
 		//Workbook wb=new XSSFWorkbook();
@@ -301,7 +307,7 @@ public class Framework {
             default:
                 System.out.println("no match");
         }
-		
+		System.out.println("----------------Framework - readObjectRepositoryLatest- End---------------");
 		return MatchingType+"_"+PropertyValue;
 	}
 	
@@ -311,7 +317,7 @@ public class Framework {
 	//Read Test Data from Excel
 	public static HashMap<String,String> readTestData(String Heading) throws IOException
 	{
-		
+		System.out.println("----------------Framework - readTestData- Start---------------");
 		HashMap<String,String> hs=null;
 		HSSFWorkbook wb;
 		HSSFSheet sh;
@@ -360,7 +366,7 @@ public class Framework {
 		}
 		
 		System.out.println("Data="+Data);
-		
+		System.out.println("----------------Framework - readTestData- End---------------");
 		return Data;
 		
 		
@@ -378,5 +384,11 @@ public class Framework {
 		Framework.extentTestMap.get(UIOperator.getCurrentThreadID()).log(Status.FAIL, msg);
 		Framework.extentTestMap.get(UIOperator.getCurrentThreadID()).addScreenCaptureFromPath(UIOperator.takeSnapShot());
 	}
+	
+	
+	
+	
+	
+	
 	
 }

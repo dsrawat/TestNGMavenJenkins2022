@@ -10,8 +10,7 @@ import com.aventstack.extentreports.reporter.configuration.Theme;
 
 public class ExtentManager {
  
-    //private static ExtentReports extent;
-    //private static ExtentReports extent = ExtentManager.createInstance();
+    
     private static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
     
     public static ExtentReports getInstance() {
@@ -52,16 +51,7 @@ public class ExtentManager {
         }	
     	
     	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-       // String ReportFileName="C:\\Users\\Dharam\\Desktop\\Git Repositories\\TestNGRepository\\TestNGMavenGitJenkins\\Report"+"\\TestReport.htm";
+       
         String ReportFileName=Framework.ReportPath+"\\TestReport.htm";
         System.out.println("Report Path="+ReportFileName);
         ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(ReportFileName);

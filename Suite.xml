@@ -10,14 +10,14 @@
 <listener class-name="com.core.GenerateReport"/>
 </listeners>
 <test name="Simple Test1">
-<parameter name="browser" value="chrome"/>
+
 <groups>
     <run>
-      <include name="SmokeTest123"/>
+      <include name="SmokeTest1234"/>
     </run>
   </groups>
 <classes>
-<class name="Test.Test1"/>
+<class name="Test.Test2"/>
 
 </classes>
 </test>

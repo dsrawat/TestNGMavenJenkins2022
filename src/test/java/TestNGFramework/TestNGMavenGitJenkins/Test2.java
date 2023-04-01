@@ -43,7 +43,7 @@ public class Test2 extends BaseClass{
 	//Logger Log=null;
 	
 	
-	Logger Log=Logger.getLogger(Test1.class);
+	Logger Log=Logger.getLogger(Test2.class);
 	
 	
 	

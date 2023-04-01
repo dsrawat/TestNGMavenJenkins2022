@@ -30,12 +30,7 @@ public class Reporter {
 	
 	
 		File file = new File(Framework.ReportPath+"\\TestReport.htm");
-		/*if(file.exists())
-		{
-			System.out.println("File already exist");
-		}
-		else
-		{*/
+		
 				
 				
 				try 
